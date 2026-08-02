@@ -17,14 +17,14 @@ export function Footer() {
         <div>
           <h4 className="text-sm font-semibold tracking-wide text-foreground uppercase">Explore</h4>
           <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-            {[
+            {([
               ["/about", "About the Doctor"],
               ["/services", "Services"],
               ["/gallery", "Gallery"],
               ["/articles", "Health Articles"],
               ["/faq", "FAQ"],
               ["/contact", "Contact & Appointment"],
-            ].map(([to, label]) => (
+            ] as const).map(([to, label]) => (
               <li key={to}>
                 <Link to={to} className="transition-colors hover:text-primary">
                   {label}
