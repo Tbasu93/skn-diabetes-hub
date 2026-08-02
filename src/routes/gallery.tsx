@@ -17,7 +17,7 @@ export const Route = createFileRoute("/gallery")({
       { property: "og:description", content: "Inside our Naihati chamber, camps and awareness events." },
     ],
   }),
-  component: Gallery;
+  component: Gallery,
 });
 
 type Item = { src: string; alt: string; category: string };
