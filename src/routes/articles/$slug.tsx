@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, Phone } from "lucide-react";
 import { PageHero, Section } from "@/components/site/Section";
-import { getArticle, relatedArticles } from "@/data/articles";
+import { getArticle, relatedArticles, type Article } from "@/data/articles";
 import { clinic, doctorInfo } from "@/data/clinic";
 
 export const Route = createFileRoute("/articles/$slug")({
@@ -78,7 +78,7 @@ function ArticlePage() {
           <div className="mt-14">
             <h2 className="text-xl font-semibold">Related articles</h2>
             <div className="mt-5 grid gap-5 sm:grid-cols-3">
-              {related.map((r) => (
+              {related.map((r: Article) => (
                 <Link
                   key={r.slug}
                   to="/articles/$slug"
