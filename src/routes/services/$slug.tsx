@@ -55,7 +55,7 @@ function ServicePage() {
             <div key={key} className="rounded-3xl border border-border bg-card p-6 shadow-soft">
               <h2 className="text-lg font-semibold">{label}</h2>
               <ul className="mt-4 space-y-2">
-                {service[key].map((item) => (
+                {(service[key] as string[]).map((item: string) => (
                   <li key={item} className="flex gap-2 text-sm leading-relaxed text-muted-foreground">
                     <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
                     {item}
@@ -69,7 +69,7 @@ function ServicePage() {
         <div className="mt-10">
           <h2 className="text-2xl font-semibold">Frequently asked questions</h2>
           <div className="mt-5 space-y-3">
-            {service.faqs.map((f) => (
+            {service.faqs.map((f: { q: string; a: string }) => (
               <details key={f.q} className="rounded-3xl border border-border bg-surface p-5">
                 <summary className="cursor-pointer list-none font-semibold marker:hidden">
                   {f.q}
