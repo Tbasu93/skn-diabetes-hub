@@ -1,15 +1,35 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Award, HeartPulse, Microscope, Sparkles } from "lucide-react";
-import { PageHero, Section, SectionHeading } from "@/components/site/Section";
+import {
+  ArrowRight,
+  BookOpen,
+  BrainCircuit,
+  HeartPulse,
+  Lightbulb,
+  Microscope,
+  Quote,
+  ShieldCheck,
+  Sparkles,
+  Stethoscope,
+  Trophy,
+  Users,
+} from "lucide-react";
+import { PageHero, Reveal, Section, SectionHeading } from "@/components/site/Section";
 import {
   clinic,
-  coreValues,
   doctorInfo,
   images,
-  mission,
-  vision,
   whyChooseUs,
 } from "@/data/clinic";
+
+const valueIcons: Record<string, { icon: typeof HeartPulse; note: string }> = {
+  Integrity: { icon: ShieldCheck, note: "Honest advice, always." },
+  Compassion: { icon: HeartPulse, note: "Patience before prescription." },
+  Innovation: { icon: Lightbulb, note: "Modern tools, modern protocols." },
+  Excellence: { icon: Trophy, note: "International clinical standards." },
+  "Evidence-Based Medicine": { icon: Microscope, note: "Guideline-led decisions." },
+  "Patient First": { icon: Users, note: "Your goals shape the plan." },
+  "Continuous Learning": { icon: BookOpen, note: "Updated with global research." },
+};
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -48,25 +68,13 @@ function About() {
               className="w-full rounded-[2rem] object-cover shadow-lift"
               loading="lazy"
             />
-            <div className="mt-6 rounded-3xl border border-border bg-surface p-6">
-              <h3 className="flex items-center gap-2 text-sm font-semibold tracking-widest uppercase">
-                <Award className="h-4 w-4 text-accent" /> Qualifications
-              </h3>
-              <ul className="mt-4 space-y-2">
-                {doctorInfo.qualifications.map((q) => (
-                  <li key={q} className="flex items-center gap-2 text-sm font-medium">
-                    <span className="h-1.5 w-1.5 rounded-full bg-accent" /> {q}
-                  </li>
-                ))}
-              </ul>
-            </div>
           </div>
 
           <div>
             <SectionHeading
               align="left"
-              eyebrow="Biography"
-              title={doctorInfo.name}
+              eyebrow="About the Doctor"
+              title={`Meet ${doctorInfo.name}`}
               subtitle={doctorInfo.role}
             />
             <div className="mt-6 space-y-4 leading-relaxed text-muted-foreground">
