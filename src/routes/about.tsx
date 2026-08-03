@@ -1,15 +1,36 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Award, HeartPulse, Microscope, Sparkles } from "lucide-react";
-import { PageHero, Section, SectionHeading } from "@/components/site/Section";
+import {
+  ArrowRight,
+  BookOpen,
+  BrainCircuit,
+  HeartPulse,
+  Lightbulb,
+  Microscope,
+  Quote,
+  ShieldCheck,
+  Sparkles,
+  Stethoscope,
+  Trophy,
+  Users,
+} from "lucide-react";
+import { PageHero, Reveal, Section, SectionHeading } from "@/components/site/Section";
 import {
   clinic,
   coreValues,
   doctorInfo,
   images,
-  mission,
-  vision,
   whyChooseUs,
 } from "@/data/clinic";
+
+const valueIcons: Record<string, { icon: typeof HeartPulse; note: string }> = {
+  Integrity: { icon: ShieldCheck, note: "Honest advice, always." },
+  Compassion: { icon: HeartPulse, note: "Patience before prescription." },
+  Innovation: { icon: Lightbulb, note: "Modern tools, modern protocols." },
+  Excellence: { icon: Trophy, note: "International clinical standards." },
+  "Evidence-Based Medicine": { icon: Microscope, note: "Guideline-led decisions." },
+  "Patient First": { icon: Users, note: "Your goals shape the plan." },
+  "Continuous Learning": { icon: BookOpen, note: "Updated with global research." },
+};
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -48,25 +69,13 @@ function About() {
               className="w-full rounded-[2rem] object-cover shadow-lift"
               loading="lazy"
             />
-            <div className="mt-6 rounded-3xl border border-border bg-surface p-6">
-              <h3 className="flex items-center gap-2 text-sm font-semibold tracking-widest uppercase">
-                <Award className="h-4 w-4 text-accent" /> Qualifications
-              </h3>
-              <ul className="mt-4 space-y-2">
-                {doctorInfo.qualifications.map((q) => (
-                  <li key={q} className="flex items-center gap-2 text-sm font-medium">
-                    <span className="h-1.5 w-1.5 rounded-full bg-accent" /> {q}
-                  </li>
-                ))}
-              </ul>
-            </div>
           </div>
 
           <div>
             <SectionHeading
               align="left"
-              eyebrow="Biography"
-              title={doctorInfo.name}
+              eyebrow="About the Doctor"
+              title={`Meet ${doctorInfo.name}`}
               subtitle={doctorInfo.role}
             />
             <div className="mt-6 space-y-4 leading-relaxed text-muted-foreground">
@@ -127,28 +136,61 @@ function About() {
       </Section>
 
       <Section>
-        <div className="grid gap-5 lg:grid-cols-2">
-          <div className="rounded-[2rem] gradient-royal p-8 text-primary-foreground shadow-lift">
-            <h3 className="text-2xl font-semibold">Mission</h3>
-            <p className="mt-3 leading-relaxed opacity-95">{mission}</p>
-          </div>
-          <div className="rounded-[2rem] border border-border bg-surface p-8">
-            <h3 className="text-2xl font-semibold">Vision</h3>
-            <p className="mt-3 leading-relaxed text-muted-foreground">{vision}</p>
+        <div className="relative overflow-hidden rounded-[2.5rem] gradient-royal p-8 text-primary-foreground shadow-lift sm:p-12">
+          <span className="pointer-events-none absolute -top-24 -right-16 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
+          <span className="pointer-events-none absolute -bottom-24 -left-16 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
+          <div className="relative">
+            <span className="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-1.5 text-xs font-bold tracking-[0.18em] uppercase">
+              <Stethoscope className="h-3.5 w-3.5" /> Director's Desk
+            </span>
+            <h2 className="mt-5 text-[2rem] leading-[1.12] font-bold text-balance sm:text-[2.75rem]">
+              From the Director's Desk
+            </h2>
+            <span className="mt-5 block h-1 w-20 rounded-full bg-white/60" />
+            <Quote className="mt-8 h-9 w-9 opacity-70" />
+            <div className="mt-4 max-w-4xl space-y-4 text-lg leading-relaxed opacity-95">
+              <p>
+                Diabetes and hormonal disorders are lifelong companions — they are not cured in a
+                single visit, they are managed well over years. My aim at {clinic.shortName} is
+                simple: give every patient the same standard of endocrine care that I trained under
+                in the United Kingdom and the United States, right here in Naihati, and explain it
+                in language that makes sense at home.
+              </p>
+              <p>
+                We measure before we prescribe, we review on schedule, and we never rush a
+                consultation. If you understand your condition, you will manage it better than any
+                medicine alone can. That belief is the foundation of this centre.
+              </p>
+            </div>
+            <p className="mt-8 text-base font-semibold">— {doctorInfo.name}</p>
+            <p className="text-sm opacity-85">{doctorInfo.role}</p>
           </div>
         </div>
 
-        <div className="mt-10">
+        <div className="mt-16">
           <SectionHeading eyebrow="Core Values" title="What guides every consultation" />
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            {coreValues.map((v) => (
-              <span
-                key={v}
-                className="rounded-full border border-border bg-card px-5 py-2.5 text-sm font-semibold text-primary shadow-soft"
-              >
-                {v}
-              </span>
-            ))}
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {coreValues.map((v, i) => {
+              const meta = valueIcons[v] ?? { icon: BrainCircuit, note: "" };
+              const Icon = meta.icon;
+              return (
+                <Reveal
+                  key={v}
+                  delay={i * 70}
+                  className="group flex items-start gap-4 rounded-3xl border border-border bg-card p-6 shadow-soft transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lift"
+                >
+                  <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl gradient-royal text-primary-foreground transition-transform group-hover:scale-110">
+                    <Icon className="h-5 w-5" />
+                  </span>
+                  <span>
+                    <span className="block text-lg font-semibold">{v}</span>
+                    <span className="mt-1 block text-sm leading-relaxed text-muted-foreground">
+                      {meta.note}
+                    </span>
+                  </span>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </Section>
