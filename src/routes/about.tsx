@@ -16,6 +16,7 @@ import {
 import { PageHero, Reveal, Section, SectionHeading } from "@/components/site/Section";
 import {
   clinic,
+  coreValues,
   doctorInfo,
   images,
   whyChooseUs,
