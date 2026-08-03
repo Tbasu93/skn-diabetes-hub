@@ -14,7 +14,7 @@ import {
   Stethoscope,
   Target,
 } from "lucide-react";
-import { Section, SectionHeading } from "@/components/site/Section";
+import { Reveal, Section, SectionHeading } from "@/components/site/Section";
 import { CountUp } from "@/components/site/CountUp";
 import {
   clinic,
@@ -132,21 +132,21 @@ function Hero() {
         <div className="relative animate-rise">
           <div className="glass-card overflow-hidden rounded-[2rem] p-3">
             <img
-              src={images.doctor}
-              alt={`${doctorInfo.name}, Consultant Endocrinologist and Diabetologist`}
+              src={images.clinic}
+              alt={`${clinic.name} chamber entrance in Naihati`}
               className="aspect-4/5 w-full rounded-3xl object-cover"
               loading="eager"
             />
           </div>
           <div className="glass-card animate-float absolute -bottom-6 -left-4 w-56 rounded-3xl p-4 sm:w-64">
             <img
-              src={images.clinic}
-              alt={`${clinic.name} chamber entrance in Naihati`}
-              className="h-24 w-full rounded-2xl object-cover"
+              src={images.doctor}
+              alt={`${doctorInfo.name}, Consultant Endocrinologist and Diabetologist`}
+              className="h-28 w-full rounded-2xl object-cover object-top"
               loading="lazy"
             />
             <p className="mt-2 text-xs font-medium text-muted-foreground">
-              Our chamber — {clinic.landmark.replace("Landmark: ", "")}
+              {doctorInfo.name}
             </p>
           </div>
         </div>
@@ -165,14 +165,18 @@ function QuickFacts() {
   return (
     <Section className="!py-10">
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {facts.map((f) => (
-          <div key={f.label} className="rounded-3xl border border-border bg-card p-5 shadow-soft">
-            <f.icon className="h-6 w-6 text-accent" />
+        {facts.map((f, i) => (
+          <Reveal
+            key={f.label}
+            delay={i * 80}
+            className="group rounded-3xl border border-border bg-card p-5 shadow-soft transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lift"
+          >
+            <f.icon className="h-6 w-6 text-accent transition-transform group-hover:scale-110" />
             <p className="mt-3 text-xs font-semibold tracking-widest text-muted-foreground uppercase">
               {f.label}
             </p>
             <p className="mt-1 font-semibold">{f.value}</p>
-          </div>
+          </Reveal>
         ))}
       </div>
     </Section>
@@ -233,17 +237,19 @@ function WhyUs() {
         subtitle="Everything here exists to make endocrine care more accurate, more measurable and easier to follow."
       />
       <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {whyChooseUs.map((w) => (
-          <div
+        {whyChooseUs.map((w, i) => (
+          <Reveal
             key={w.title}
-            className="group rounded-3xl border border-border bg-card p-6 shadow-soft transition-all hover:-translate-y-1 hover:shadow-lift"
+            delay={i * 70}
+            className="group relative overflow-hidden rounded-3xl border border-border bg-card p-6 shadow-soft transition-all hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-lift"
           >
-            <div className="grid h-11 w-11 place-items-center rounded-2xl gradient-royal text-primary-foreground">
+            <span className="pointer-events-none absolute -top-16 -right-16 h-40 w-40 rounded-full bg-accent/10 blur-2xl transition-opacity duration-500 group-hover:opacity-100 opacity-0" />
+            <div className="grid h-11 w-11 place-items-center rounded-2xl gradient-royal text-primary-foreground transition-transform group-hover:scale-110">
               <CheckCircle2 className="h-5 w-5" />
             </div>
             <h3 className="mt-4 text-lg font-semibold">{w.title}</h3>
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{w.desc}</p>
-          </div>
+          </Reveal>
         ))}
       </div>
     </Section>
@@ -345,12 +351,16 @@ function Journey() {
         subtitle={timingNote}
       />
       <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {patientJourney.map((p) => (
-          <div key={p.step} className="relative rounded-3xl border border-border bg-card p-6 shadow-soft">
-            <span className="text-4xl font-semibold text-secondary">{p.step}</span>
-            <h3 className="mt-1 text-lg font-semibold">{p.title}</h3>
+        {patientJourney.map((p, i) => (
+          <Reveal
+            key={p.step}
+            delay={i * 70}
+            className="relative rounded-3xl border border-border bg-card p-6 shadow-soft transition-all hover:-translate-y-1 hover:shadow-lift"
+          >
+            <span className="text-5xl font-bold text-gradient">{p.step}</span>
+            <h3 className="mt-2 text-lg font-semibold">{p.title}</h3>
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
-          </div>
+          </Reveal>
         ))}
       </div>
       <div className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -434,8 +444,11 @@ function FaqPreview() {
               key={f.q}
               className="group rounded-3xl border border-border bg-card p-5 shadow-soft"
             >
-              <summary className="cursor-pointer list-none font-semibold marker:hidden">
-                {f.q}
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold marker:hidden">
+                <span>{f.q}</span>
+                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-secondary text-lg leading-none font-bold text-primary transition-transform duration-300 group-open:rotate-45">
+                  +
+                </span>
               </summary>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{f.a}</p>
             </details>
