@@ -1,4 +1,45 @@
-import type { ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
+
+export function Reveal({
+  children,
+  delay = 0,
+  className = "",
+}: {
+  children: ReactNode;
+  delay?: number;
+  className?: string;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [shown, setShown] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          setShown(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -60px 0px" },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      style={{ transitionDelay: `${delay}ms` }}
+      className={`transition-all duration-700 ease-out ${
+        shown ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
+      } ${className}`}
+    >
+      {children}
+    </div>
+  );
+}
 
 export function SectionHeading({
   eyebrow,
@@ -12,14 +53,24 @@ export function SectionHeading({
   align?: "center" | "left";
 }) {
   return (
-    <div className={align === "center" ? "mx-auto max-w-2xl text-center" : "max-w-2xl"}>
+    <div className={align === "center" ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}>
       {eyebrow && (
-        <span className="inline-block rounded-full bg-secondary px-3 py-1 text-xs font-semibold tracking-widest text-primary uppercase">
+        <span className="inline-flex items-center gap-2 rounded-full bg-secondary px-4 py-1.5 text-xs font-bold tracking-[0.18em] text-primary uppercase shadow-soft">
+          <span className="h-1.5 w-1.5 rounded-full gradient-royal" />
           {eyebrow}
         </span>
       )}
-      <h2 className="mt-4 text-3xl font-semibold text-balance sm:text-4xl">{title}</h2>
-      {subtitle && <p className="mt-3 text-base leading-relaxed text-muted-foreground">{subtitle}</p>}
+      <h2 className="mt-5 text-[2rem] leading-[1.1] font-bold text-balance sm:text-[2.75rem] lg:text-5xl">
+        {title}
+      </h2>
+      <span
+        className={`mt-5 block h-1 w-20 rounded-full gradient-royal ${
+          align === "center" ? "mx-auto" : ""
+        }`}
+      />
+      {subtitle && (
+        <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">{subtitle}</p>
+      )}
     </div>
   );
 }
@@ -55,8 +106,11 @@ export function PageHero({
         <span className="inline-block rounded-full bg-card px-3 py-1 text-xs font-semibold tracking-widest text-primary uppercase shadow-soft">
           {eyebrow}
         </span>
-        <h1 className="mt-5 max-w-3xl text-4xl font-semibold text-balance sm:text-5xl">{title}</h1>
-        <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground">{subtitle}</p>
+      <h1 className="mt-5 max-w-4xl text-[2.4rem] leading-[1.06] font-bold text-balance sm:text-6xl">
+        {title}
+      </h1>
+      <span className="mt-6 block h-1 w-24 rounded-full gradient-royal" />
+      <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">{subtitle}</p>
       </div>
     </div>
   );
