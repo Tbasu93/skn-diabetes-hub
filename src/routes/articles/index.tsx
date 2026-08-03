@@ -1,6 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { Search } from "lucide-react";
 import { PageHero, Section } from "@/components/site/Section";
 import { articleCategories, articles } from "@/data/articles";
 
@@ -24,19 +23,11 @@ export const Route = createFileRoute("/articles/")({
 });
 
 function ArticlesIndex() {
-  const [q, setQ] = useState("");
   const [cat, setCat] = useState("All");
 
   const list = useMemo(
-    () =>
-      articles.filter(
-        (a) =>
-          (cat === "All" || a.category === cat) &&
-          (q.trim() === "" ||
-            a.title.toLowerCase().includes(q.toLowerCase()) ||
-            a.tags.join(" ").includes(q.toLowerCase())),
-      ),
-    [q, cat],
+    () => articles.filter((a) => cat === "All" || a.category === cat),
+    [cat],
   );
 
   const featured = articles.filter((a) => a.featured);
@@ -68,16 +59,8 @@ function ArticlesIndex() {
           ))}
         </div>
 
-        <div className="mt-14 flex flex-col gap-4 sm:flex-row sm:items-center">
-          <div className="relative flex-1">
-            <Search className="absolute top-1/2 left-4 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-            <input
-              value={q}
-              onChange={(e) => setQ(e.target.value)}
-              placeholder="Search articles, e.g. HbA1c, thyroid, PCOS"
-              className="w-full rounded-full border border-border bg-card py-3 pr-4 pl-11 text-sm shadow-soft outline-none focus:border-primary"
-            />
-          </div>
+        <div className="mt-14 flex flex-wrap items-center gap-3">
+          <span className="text-sm font-semibold text-muted-foreground">Select category</span>
           <select
             value={cat}
             onChange={(e) => setCat(e.target.value)}
@@ -113,7 +96,7 @@ function ArticlesIndex() {
           ))}
         </div>
         {list.length === 0 && (
-          <p className="mt-10 text-center text-muted-foreground">No articles match your search.</p>
+          <p className="mt-10 text-center text-muted-foreground">No articles in this category yet.</p>
         )}
       </Section>
     </>

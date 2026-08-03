@@ -48,8 +48,16 @@ function Faq() {
 
         <div className="mx-auto mt-10 max-w-3xl space-y-3">
           {faqs.map((f) => (
-            <details key={f.q} className="rounded-3xl border border-border bg-card p-5 shadow-soft">
-              <summary className="cursor-pointer list-none font-semibold marker:hidden">{f.q}</summary>
+            <details
+              key={f.q}
+              className="group rounded-3xl border border-border bg-card p-5 shadow-soft transition-colors open:border-primary/40 hover:border-primary/30"
+            >
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold marker:hidden">
+                <span>{f.q}</span>
+                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-secondary text-lg leading-none font-bold text-primary transition-transform duration-300 group-open:rotate-45">
+                  +
+                </span>
+              </summary>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{f.a}</p>
             </details>
           ))}
