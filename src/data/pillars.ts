@@ -1,5 +1,5 @@
 export type Pillar = {
-  id: "treatment" | "assessments" | "nutrition" | "camps" | "diabetes-day";
+  id: "treatment" | "assessments" | "nutrition" | "camps";
   label: string;
   title: string;
   tagline: string;
@@ -52,30 +52,16 @@ export const pillars: Pillar[] = [
   },
   {
     id: "camps",
-    label: "Quarterly Health Camps",
-    title: "Quarterly Free Health Camps",
-    tagline: "Organised at the clinic by partner companies every quarter",
+    label: "Camps & Awareness",
+    title: "Free Health Camps & Awareness Drives",
+    tagline: "Quarterly camps and World Diabetes Day units — free for all",
     intro:
-      "Health camps are organised at SKN by partner companies once every quarter, where patients' health is examined absolutely free of cost — screening, counselling and referral in a single visit.",
+      "Health camps are organised at SKN by partner companies once every quarter, where patients' health is examined absolutely free of cost. On World Diabetes Day, special health units deliver awareness and consciousness with free tests for anyone who visits the clinic.",
     highlights: [
-      "Held once every quarter at the chamber",
-      "Completely free examination for attendees",
-      "Screening for glucose, blood pressure and weight",
-      "On-the-spot advice and follow-up planning",
-    ],
-  },
-  {
-    id: "diabetes-day",
-    label: "World Diabetes Day",
-    title: "World Diabetes Day Special Units",
-    tagline: "Awareness and free testing open to everyone",
-    intro:
-      "Special health units are organised on World Diabetes Day delivering awareness and consciousness, with free-of-cost tests conducted for anyone who comes and visits the clinic.",
-    highlights: [
-      "Open to the general public, not only patients",
-      "Free tests for every visitor on the day",
-      "Awareness talks and printed guidance",
-      "Early detection of undiagnosed diabetes",
+      "Quarterly camps hosted at the chamber by partner companies",
+      "Completely free examination for everyone attending",
+      "World Diabetes Day units open to the general public",
+      "Awareness talks, printed guidance and early detection",
     ],
   },
 ];
