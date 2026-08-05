@@ -3,12 +3,15 @@ import {
   Activity,
   ArrowRight,
   CalendarClock,
+  CalendarHeart,
   CheckCircle2,
   Clock,
   Compass,
+  FlaskConical,
   MapPin,
   Phone,
   Quote,
+  Salad,
   ShieldCheck,
   Star,
   Stethoscope,
@@ -33,8 +36,15 @@ import {
   vision,
   whyChooseUs,
 } from "@/data/clinic";
-import { services } from "@/data/services";
+import { pillars } from "@/data/pillars";
 import { articles } from "@/data/articles";
+
+const homePillarIcon = {
+  treatment: Stethoscope,
+  assessments: FlaskConical,
+  nutrition: Salad,
+  camps: CalendarHeart,
+} as const;
 
 export const Route = createFileRoute("/")({
   head: () => ({
