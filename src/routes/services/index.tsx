@@ -46,7 +46,7 @@ const isPillarId = (v: unknown): v is PillarId =>
 
 export const Route = createFileRoute("/services/")({
   validateSearch: (search: Record<string, unknown>): { p?: PillarId } =>
-    isPillarId(search.p) ? { p: search.p } : {},
+    isPillarId(search['p']) ? { p: search['p'] as PillarId } : {},
   head: () => ({
     meta: [
       { title: "Services | Treatment, Free Tests, Nutrition & Camps in Naihati" },
