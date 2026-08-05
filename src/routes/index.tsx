@@ -280,34 +280,44 @@ function ServicesPreview() {
     <Section>
       <SectionHeading
         eyebrow="Our Services"
-        title="Comprehensive endocrine and diabetes expertise"
-        subtitle="Twenty focused areas of care, each with its own diagnostic and treatment pathway."
+        title="Four ways SKN cares for you"
+        subtitle="Specialist treatment, free health assessments, expert nutrition counselling and free community health camps."
       />
-      <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {services.slice(0, 9).map((s) => (
-          <Link
-            key={s.slug}
-            to="/services/$slug"
-            params={{ slug: s.slug }}
-            className="group rounded-3xl border border-border bg-card p-6 shadow-soft transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lift"
-          >
-            <span className="text-xs font-semibold tracking-widest text-accent uppercase">
-              {s.group}
-            </span>
-            <h3 className="mt-2 text-lg font-semibold group-hover:text-primary">{s.title}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.tagline}</p>
-            <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary">
-              Learn more <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </span>
-          </Link>
-        ))}
+      <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {pillars.map((p, i) => {
+          const Icon = homePillarIcon[p.id];
+          return (
+            <Reveal key={p.id} delay={i * 90} className="h-full">
+              <Link
+                to="/services"
+                search={{ p: p.id }}
+                className="group shadow-soft hover:shadow-lift relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-border bg-card p-6 transition-all duration-500 hover:-translate-y-1.5 hover:border-primary/40"
+              >
+                <span className="pointer-events-none absolute -top-16 -right-12 h-44 w-44 rounded-full bg-accent/20 opacity-0 blur-3xl transition-opacity duration-700 group-hover:opacity-100" />
+                <span className="bg-secondary text-primary relative grid h-14 w-14 place-items-center rounded-2xl transition-transform duration-500 group-hover:scale-110">
+                  <Icon className="h-6 w-6" />
+                </span>
+                <h3 className="relative mt-5 text-lg font-bold group-hover:text-primary">
+                  {p.label}
+                </h3>
+                <p className="relative mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
+                  {p.tagline}
+                </p>
+                <span className="relative mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary">
+                  View details
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </span>
+              </Link>
+            </Reveal>
+          );
+        })}
       </div>
       <div className="mt-8 text-center">
         <Link
           to="/services"
           className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-6 py-3 text-sm font-semibold shadow-soft transition-colors hover:border-primary hover:text-primary"
         >
-          View all 20 services <ArrowRight className="h-4 w-4" />
+          Explore all services <ArrowRight className="h-4 w-4" />
         </Link>
       </div>
     </Section>
