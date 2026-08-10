@@ -17,6 +17,8 @@ import {
   Stethoscope,
 } from "lucide-react";
 import { PageHero, Reveal, Section } from "@/components/site/Section";
+import { RevealImage } from "@/components/site/RevealImage";
+import { sectionAlt, sectionImages } from "@/data/sectionImages";
 import { serviceGroups, services } from "@/data/services";
 import { pillars, type Pillar } from "@/data/pillars";
 import { clinic, complimentaryTests, testsNote } from "@/data/clinic";
@@ -26,6 +28,13 @@ const pillarIcon = {
   assessments: FlaskConical,
   nutrition: Salad,
   camps: CalendarHeart,
+} as const;
+
+const pillarImage = {
+  treatment: sectionImages.treatment,
+  assessments: sectionImages.assessments,
+  nutrition: sectionImages.nutrition,
+  camps: sectionImages.camps,
 } as const;
 
 const groupIcon = (group: string) => {
@@ -78,6 +87,8 @@ function ServicesIndex() {
         eyebrow="Services"
         title="Four ways SKN cares for you"
         subtitle="Specialist treatment, complimentary health assessments, expert nutrition counselling and free community health camps — select any pillar to explore it in detail."
+        image={sectionImages.whyUs}
+        imageAlt={sectionAlt.whyUs}
       />
 
       <Section>
