@@ -18,6 +18,8 @@ import {
   Target,
 } from "lucide-react";
 import { Reveal, Section, SectionHeading } from "@/components/site/Section";
+import { RevealImage } from "@/components/site/RevealImage";
+import { sectionAlt, sectionImages } from "@/data/sectionImages";
 import { CountUp } from "@/components/site/CountUp";
 import {
   clinic,
@@ -246,6 +248,11 @@ function WhyUs() {
         title="A centre built around one specialty, done exceptionally well"
         subtitle="Everything here exists to make endocrine care more accurate, more measurable and easier to follow."
       />
+      <RevealImage
+        src={sectionImages.whyUs}
+        alt={sectionAlt.whyUs}
+        className="mt-10 aspect-21/9 w-full"
+      />
       <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {whyChooseUs.map((w, i) => (
           <Reveal
@@ -269,7 +276,12 @@ function WhyUs() {
 function MissionVision() {
   return (
     <Section>
-      <div className="grid gap-5 lg:grid-cols-2">
+      <div className="grid items-stretch gap-5 lg:grid-cols-[1fr_1fr]">
+        <RevealImage
+          src={sectionImages.treatment}
+          alt={sectionAlt.treatment}
+          className="min-h-72 w-full lg:row-span-2"
+        />
         {[
           { icon: Target, title: "Our Mission", text: mission },
           { icon: Compass, title: "Our Vision", text: vision },
