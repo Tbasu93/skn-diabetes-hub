@@ -464,6 +464,11 @@ function Testimonials() {
         eyebrow="Patient Voices"
         title="Trusted by families across Naihati and beyond"
       />
+      <RevealImage
+        src={sectionImages.patients}
+        alt={sectionAlt.patients}
+        className="mt-10 aspect-21/9 w-full"
+      />
       <div className="mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4">
         {testimonials.map((t) => (
           <figure
@@ -495,7 +500,13 @@ function FaqPreview() {
     <div className="bg-surface">
       <Section>
         <SectionHeading eyebrow="FAQ" title="Questions patients ask us most" />
-        <div className="mx-auto mt-10 max-w-3xl space-y-3">
+        <div className="mt-10 grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+          <RevealImage
+            src={sectionImages.faq}
+            alt={sectionAlt.faq}
+            className="aspect-4/3 w-full lg:sticky lg:top-28"
+          />
+          <div className="space-y-3">
           {faqs.slice(0, 6).map((f) => (
             <details
               key={f.q}
@@ -510,6 +521,7 @@ function FaqPreview() {
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{f.a}</p>
             </details>
           ))}
+          </div>
         </div>
         <div className="mt-8 text-center">
           <Link to="/faq" className="text-sm font-semibold text-primary hover:underline">
