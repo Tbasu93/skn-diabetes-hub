@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { PageHero, Section } from "@/components/site/Section";
+import { RevealImage } from "@/components/site/RevealImage";
+import { sectionAlt, sectionImages } from "@/data/sectionImages";
 import { articleCategories, articles } from "@/data/articles";
 
 export const Route = createFileRoute("/articles/")({
@@ -38,26 +40,41 @@ function ArticlesIndex() {
         eyebrow="Articles"
         title="Health library"
         subtitle="Clear, evidence-based writing on diabetes, thyroid, hormones and metabolic health."
+        image={sectionImages.articles}
+        imageAlt={sectionAlt.articles}
       />
 
       <Section>
         <h2 className="text-sm font-semibold tracking-widest text-accent uppercase">Featured</h2>
         <div className="mt-5 grid gap-5 md:grid-cols-3">
-          {featured.map((a) => (
+          {featured.map((a, i) => (
             <Link
               key={a.slug}
               to="/articles/$slug"
               params={{ slug: a.slug }}
-              className="group rounded-3xl gradient-royal p-6 text-primary-foreground shadow-lift transition-transform hover:-translate-y-1"
+              className="group relative overflow-hidden rounded-3xl gradient-royal p-6 text-primary-foreground shadow-lift transition-transform hover:-translate-y-1"
             >
-              <span className="text-xs font-semibold tracking-widest uppercase opacity-80">
+              <img
+                src={[sectionImages.assessments, sectionImages.nutrition, sectionImages.faq][i % 3]}
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+                className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-25 mix-blend-luminosity transition-transform duration-700 group-hover:scale-110"
+              />
+              <span className="relative text-xs font-semibold tracking-widest uppercase opacity-80">
                 {a.category}
               </span>
-              <h3 className="mt-2 text-lg leading-snug font-semibold">{a.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed opacity-90">{a.excerpt}</p>
+              <h3 className="relative mt-2 text-lg leading-snug font-semibold">{a.title}</h3>
+              <p className="relative mt-2 text-sm leading-relaxed opacity-90">{a.excerpt}</p>
             </Link>
           ))}
         </div>
+
+        <RevealImage
+          src={sectionImages.whyUs}
+          alt={sectionAlt.whyUs}
+          className="mt-14 aspect-21/9 w-full"
+        />
 
         <div className="mt-14 flex flex-wrap items-center gap-3">
           <span className="text-sm font-semibold text-muted-foreground">Select category</span>
@@ -75,13 +92,29 @@ function ArticlesIndex() {
         </div>
 
         <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {list.map((a) => (
+          {list.map((a, i) => (
             <Link
               key={a.slug}
               to="/articles/$slug"
               params={{ slug: a.slug }}
-              className="group rounded-3xl border border-border bg-card p-6 shadow-soft transition-all hover:-translate-y-1 hover:shadow-lift"
+              className="group overflow-hidden rounded-3xl border border-border bg-card shadow-soft transition-all hover:-translate-y-1 hover:shadow-lift"
             >
+              <img
+                src={
+                  [
+                    sectionImages.assessments,
+                    sectionImages.nutrition,
+                    sectionImages.treatment,
+                    sectionImages.patients,
+                    sectionImages.faq,
+                    sectionImages.camps,
+                  ][i % 6]
+                }
+                alt={a.title}
+                loading="lazy"
+                className="h-44 w-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="p-6">
               <span className="text-xs font-semibold tracking-widest text-accent uppercase">
                 {a.category}
               </span>
@@ -92,6 +125,7 @@ function ArticlesIndex() {
               <p className="mt-4 text-xs text-muted-foreground">
                 {a.date} · {a.readMins} min read
               </p>
+              </div>
             </Link>
           ))}
         </div>
