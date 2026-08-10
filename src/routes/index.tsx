@@ -537,6 +537,11 @@ function LatestArticles() {
   return (
     <Section>
       <SectionHeading eyebrow="Health Library" title="Latest articles from the centre" />
+      <RevealImage
+        src={sectionImages.articles}
+        alt={sectionAlt.articles}
+        className="mt-10 aspect-21/9 w-full"
+      />
       <div className="mt-12 grid gap-5 md:grid-cols-3">
         {articles.slice(0, 3).map((a) => (
           <Link
@@ -564,6 +569,12 @@ function FinalCta() {
   return (
     <Section>
       <div className="relative overflow-hidden rounded-[2.5rem] gradient-royal p-10 text-center text-primary-foreground shadow-lift sm:p-16">
+        <img
+          src={sectionImages.cta}
+          alt={sectionAlt.cta}
+          loading="lazy"
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-30 mix-blend-luminosity animate-float"
+        />
         <div className="absolute -top-20 -right-10 h-64 w-64 rounded-full bg-primary-foreground/10 blur-3xl" />
         <h2 className="relative text-3xl font-semibold text-balance sm:text-4xl">
           Take control of your diabetes and hormone health
