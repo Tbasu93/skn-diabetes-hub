@@ -68,7 +68,7 @@ export const Route = createFileRoute("/services/")({
 
 function ServicesIndex() {
   const { p } = Route.useSearch();
-  const navigate = useNavigate({ from: "/services" });
+  const navigate = useNavigate({ from: "/services/" });
   const active = p ?? "treatment";
   const activePillar = pillars.find((x) => x.id === active)!;
 
