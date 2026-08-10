@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Phone } from "lucide-react";
 import { PageHero, Section } from "@/components/site/Section";
+import { RevealImage } from "@/components/site/RevealImage";
+import { sectionAlt, sectionImages } from "@/data/sectionImages";
 import { clinic, faqs, fees } from "@/data/clinic";
 
 export const Route = createFileRoute("/faq")({
@@ -29,6 +31,8 @@ function Faq() {
         eyebrow="FAQ"
         title="Frequently asked questions"
         subtitle="Booking, fees, timings and treatment — answered clearly before your first visit."
+        image={sectionImages.faq}
+        imageAlt={sectionAlt.faq}
       />
       <Section>
         <div className="grid gap-4 sm:grid-cols-2">
@@ -46,7 +50,13 @@ function Faq() {
           ))}
         </div>
 
-        <div className="mx-auto mt-10 max-w-3xl space-y-3">
+        <div className="mt-10 grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+          <RevealImage
+            src={sectionImages.journey}
+            alt={sectionAlt.journey}
+            className="aspect-4/3 w-full lg:sticky lg:top-28"
+          />
+          <div className="space-y-3">
           {faqs.map((f) => (
             <details
               key={f.q}
@@ -61,9 +71,18 @@ function Faq() {
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{f.a}</p>
             </details>
           ))}
+          </div>
         </div>
 
-        <div className="mx-auto mt-10 max-w-3xl rounded-3xl border border-border bg-surface p-6 text-center">
+        <div className="relative mx-auto mt-10 max-w-3xl overflow-hidden rounded-3xl border border-border bg-surface p-6 text-center">
+          <img
+            src={sectionImages.cta}
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+            className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-15"
+          />
+          <div className="relative">
           <p className="text-sm text-muted-foreground">Still have a question?</p>
           <a
             href={`tel:${clinic.phoneRaw}`}
@@ -71,6 +90,7 @@ function Faq() {
           >
             <Phone className="h-4 w-4" /> Call {clinic.phone}
           </a>
+          </div>
         </div>
       </Section>
     </>
