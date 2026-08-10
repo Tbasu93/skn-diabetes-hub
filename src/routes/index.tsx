@@ -48,6 +48,13 @@ const homePillarIcon = {
   camps: CalendarHeart,
 } as const;
 
+const homePillarImage = {
+  treatment: sectionImages.treatment,
+  assessments: sectionImages.assessments,
+  nutrition: sectionImages.nutrition,
+  camps: sectionImages.camps,
+} as const;
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
