@@ -3,6 +3,8 @@ import { useState } from "react";
 import { AlertTriangle, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { toast } from "sonner";
 import { PageHero, Section } from "@/components/site/Section";
+import { RevealImage } from "@/components/site/RevealImage";
+import { sectionAlt, sectionImages } from "@/data/sectionImages";
 import { clinic, fees, timingNote, timings } from "@/data/clinic";
 
 export const Route = createFileRoute("/contact")({
@@ -33,9 +35,16 @@ function Contact() {
         eyebrow="Contact"
         title="Visit or call the centre"
         subtitle="Appointments are confirmed only over phone or in person. Send us a message and we will call you back."
+        image={sectionImages.contact}
+        imageAlt={sectionAlt.contact}
       />
 
       <Section>
+        <RevealImage
+          src={sectionImages.journey}
+          alt={sectionAlt.journey}
+          className="mb-10 aspect-21/9 w-full"
+        />
         <div className="grid gap-6 lg:grid-cols-2">
           <div className="space-y-4">
             {[
@@ -65,6 +74,11 @@ function Contact() {
 
             <div className="rounded-3xl border border-border bg-surface p-6">
               <h2 className="font-semibold">Consultation Timing</h2>
+              <RevealImage
+                src={sectionImages.whyUs}
+                alt={sectionAlt.whyUs}
+                className="mt-4 aspect-16/9 w-full"
+              />
               <ul className="mt-3 space-y-2 text-sm">
                 {timings.map((t) => (
                   <li key={t.day} className="flex justify-between">
@@ -114,8 +128,15 @@ function Contact() {
                 setSent(true);
                 toast.success("Message noted — please call +91 9830585954 to confirm your slot.");
               }}
-              className="rounded-3xl border border-border bg-card p-6 shadow-soft"
+              className="overflow-hidden rounded-3xl border border-border bg-card shadow-soft"
             >
+              <img
+                src={sectionImages.patients}
+                alt={sectionAlt.patients}
+                loading="lazy"
+                className="h-44 w-full object-cover"
+              />
+              <div className="p-6">
               <h2 className="text-xl font-semibold">Appointment enquiry</h2>
               <p className="mt-1 text-sm text-muted-foreground">
                 This form is an enquiry only — no online booking is available. We will call you back.
@@ -131,6 +152,7 @@ function Contact() {
                 >
                   {sent ? "Enquiry sent" : "Send enquiry"}
                 </button>
+              </div>
               </div>
             </form>
           </div>

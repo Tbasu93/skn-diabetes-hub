@@ -17,6 +17,8 @@ import {
   Stethoscope,
 } from "lucide-react";
 import { PageHero, Reveal, Section } from "@/components/site/Section";
+import { RevealImage } from "@/components/site/RevealImage";
+import { sectionAlt, sectionImages } from "@/data/sectionImages";
 import { serviceGroups, services } from "@/data/services";
 import { pillars, type Pillar } from "@/data/pillars";
 import { clinic, complimentaryTests, testsNote } from "@/data/clinic";
@@ -26,6 +28,13 @@ const pillarIcon = {
   assessments: FlaskConical,
   nutrition: Salad,
   camps: CalendarHeart,
+} as const;
+
+const pillarImage = {
+  treatment: sectionImages.treatment,
+  assessments: sectionImages.assessments,
+  nutrition: sectionImages.nutrition,
+  camps: sectionImages.camps,
 } as const;
 
 const groupIcon = (group: string) => {
@@ -68,7 +77,7 @@ export const Route = createFileRoute("/services/")({
 
 function ServicesIndex() {
   const { p } = Route.useSearch();
-  const navigate = useNavigate({ from: "/services" });
+  const navigate = useNavigate({ from: "/services/" });
   const active = p ?? "treatment";
   const activePillar = pillars.find((x) => x.id === active)!;
 
@@ -78,6 +87,8 @@ function ServicesIndex() {
         eyebrow="Services"
         title="Four ways SKN cares for you"
         subtitle="Specialist treatment, complimentary health assessments, expert nutrition counselling and free community health camps — select any pillar to explore it in detail."
+        image={sectionImages.whyUs}
+        imageAlt={sectionAlt.whyUs}
       />
 
       <Section>
@@ -105,6 +116,16 @@ function ServicesIndex() {
                       isActive ? "bg-primary-foreground/25 opacity-100" : "bg-accent/20 opacity-0 group-hover:opacity-100"
                     }`}
                   />
+                  <span className="relative -mx-6 -mt-6 mb-5 block overflow-hidden">
+                    <img
+                      src={pillarImage[pillar.id]}
+                      alt={pillar.title}
+                      loading="lazy"
+                      className={`h-36 w-full object-cover transition-transform duration-700 group-hover:scale-110 ${
+                        isActive ? "scale-105" : ""
+                      }`}
+                    />
+                  </span>
                   <span
                     className={`relative grid h-14 w-14 place-items-center rounded-2xl transition-transform duration-500 ${
                       isActive
@@ -151,6 +172,12 @@ function ServicesIndex() {
               <p className="mt-4 max-w-3xl text-lg leading-relaxed text-muted-foreground">
                 {activePillar.intro}
               </p>
+              <RevealImage
+                key={activePillar.id}
+                src={pillarImage[activePillar.id]}
+                alt={activePillar.title}
+                className="mt-8 aspect-21/9 w-full"
+              />
               <div className="mt-8 grid gap-3 sm:grid-cols-2">
                 {activePillar.highlights.map((h, i) => (
                   <Reveal key={h} delay={i * 70}>
@@ -200,6 +227,11 @@ function TreatmentDetail() {
         Twenty specialist services grouped by system. Every service has its own page covering
         symptoms, causes, diagnosis, treatment and FAQs.
       </p>
+      <RevealImage
+        src={sectionImages.treatment}
+        alt={sectionAlt.treatment}
+        className="mt-6 aspect-21/9 w-full"
+      />
       <div className="mt-6 space-y-5">
         {serviceGroups.map((group) => {
           const Icon = groupIcon(group);
@@ -282,6 +314,11 @@ function AssessmentsDetail() {
   return (
     <div className="mt-10">
       <h3 className="text-2xl font-bold sm:text-3xl">The eleven complimentary assessments</h3>
+      <RevealImage
+        src={sectionImages.assessments}
+        alt={sectionAlt.assessments}
+        className="mt-6 aspect-21/9 w-full"
+      />
       <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {complimentaryTests.map((t, i) => (
           <Reveal key={t.name} delay={i * 50}>
@@ -312,6 +349,11 @@ function NutritionDetail() {
   return (
     <div className="mt-10">
       <h3 className="text-2xl font-bold sm:text-3xl">How counselling works</h3>
+      <RevealImage
+        src={sectionImages.nutrition}
+        alt={sectionAlt.nutrition}
+        className="mt-6 aspect-21/9 w-full"
+      />
       <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {steps.map((s, i) => (
           <Reveal key={s.title} delay={i * 90}>
@@ -334,21 +376,31 @@ function CampsDetail() {
     {
       title: "Quarterly corporate health camps",
       desc: "Partner companies organise camps at the chamber every quarter. Attendees are examined absolutely free of cost, with screening, counselling and onward referral in one visit.",
+      img: sectionImages.camps,
     },
     {
       title: "World Diabetes Day units",
       desc: "Special health units run on World Diabetes Day spreading awareness and consciousness, with free tests conducted for anyone who comes and visits the clinic.",
+      img: sectionImages.patients,
     },
   ];
   return (
     <div className="mt-10 grid gap-5 lg:grid-cols-2">
       {items.map((it, i) => (
         <Reveal key={it.title} delay={i * 120}>
-          <div className="bg-card shadow-soft hover:shadow-lift relative h-full overflow-hidden rounded-[2rem] border border-border p-8 transition-all hover:-translate-y-1">
+          <div className="group bg-card shadow-soft hover:shadow-lift relative h-full overflow-hidden rounded-[2rem] border border-border transition-all hover:-translate-y-1">
+            <img
+              src={it.img}
+              alt={it.title}
+              loading="lazy"
+              className="h-52 w-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            <div className="relative p-8">
             <span className="pointer-events-none absolute -top-20 -right-16 h-56 w-56 rounded-full bg-accent/15 blur-3xl" />
             <CalendarHeart className="relative h-8 w-8 text-primary" />
             <h4 className="relative mt-4 text-xl font-bold">{it.title}</h4>
             <p className="relative mt-3 leading-relaxed text-muted-foreground">{it.desc}</p>
+            </div>
           </div>
         </Reveal>
       ))}

@@ -18,6 +18,8 @@ import {
   Target,
 } from "lucide-react";
 import { Reveal, Section, SectionHeading } from "@/components/site/Section";
+import { RevealImage } from "@/components/site/RevealImage";
+import { sectionAlt, sectionImages } from "@/data/sectionImages";
 import { CountUp } from "@/components/site/CountUp";
 import {
   clinic,
@@ -44,6 +46,13 @@ const homePillarIcon = {
   assessments: FlaskConical,
   nutrition: Salad,
   camps: CalendarHeart,
+} as const;
+
+const homePillarImage = {
+  treatment: sectionImages.treatment,
+  assessments: sectionImages.assessments,
+  nutrition: sectionImages.nutrition,
+  camps: sectionImages.camps,
 } as const;
 
 export const Route = createFileRoute("/")({
@@ -246,6 +255,11 @@ function WhyUs() {
         title="A centre built around one specialty, done exceptionally well"
         subtitle="Everything here exists to make endocrine care more accurate, more measurable and easier to follow."
       />
+      <RevealImage
+        src={sectionImages.whyUs}
+        alt={sectionAlt.whyUs}
+        className="mt-10 aspect-21/9 w-full"
+      />
       <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {whyChooseUs.map((w, i) => (
           <Reveal
@@ -269,7 +283,12 @@ function WhyUs() {
 function MissionVision() {
   return (
     <Section>
-      <div className="grid gap-5 lg:grid-cols-2">
+      <div className="grid items-stretch gap-5 lg:grid-cols-[1fr_1fr]">
+        <RevealImage
+          src={sectionImages.treatment}
+          alt={sectionAlt.treatment}
+          className="min-h-72 w-full lg:row-span-2"
+        />
         {[
           { icon: Target, title: "Our Mission", text: mission },
           { icon: Compass, title: "Our Vision", text: vision },
@@ -304,6 +323,14 @@ function ServicesPreview() {
                 className="group shadow-soft hover:shadow-lift relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-border bg-card p-6 transition-all duration-500 hover:-translate-y-1.5 hover:border-primary/40"
               >
                 <span className="pointer-events-none absolute -top-16 -right-12 h-44 w-44 rounded-full bg-accent/20 opacity-0 blur-3xl transition-opacity duration-700 group-hover:opacity-100" />
+                <span className="relative -mx-6 -mt-6 mb-5 block overflow-hidden">
+                  <img
+                    src={homePillarImage[p.id]}
+                    alt={p.title}
+                    loading="lazy"
+                    className="h-40 w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                </span>
                 <span className="bg-secondary text-primary relative grid h-14 w-14 place-items-center rounded-2xl transition-transform duration-500 group-hover:scale-110">
                   <Icon className="h-6 w-6" />
                 </span>
@@ -343,6 +370,11 @@ function Tests() {
           title="Eleven health assessments, free of cost"
           subtitle={testsNote}
         />
+        <RevealImage
+          src={sectionImages.assessments}
+          alt={sectionAlt.assessments}
+          className="mt-10 aspect-21/9 w-full"
+        />
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {complimentaryTests.map((t) => (
             <div
@@ -369,6 +401,11 @@ function Journey() {
         eyebrow="Patient Journey"
         title="What happens from your first call"
         subtitle={timingNote}
+      />
+      <RevealImage
+        src={sectionImages.journey}
+        alt={sectionAlt.journey}
+        className="mt-10 aspect-21/9 w-full"
       />
       <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {patientJourney.map((p, i) => (
@@ -427,6 +464,11 @@ function Testimonials() {
         eyebrow="Patient Voices"
         title="Trusted by families across Naihati and beyond"
       />
+      <RevealImage
+        src={sectionImages.patients}
+        alt={sectionAlt.patients}
+        className="mt-10 aspect-21/9 w-full"
+      />
       <div className="mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4">
         {testimonials.map((t) => (
           <figure
@@ -458,7 +500,13 @@ function FaqPreview() {
     <div className="bg-surface">
       <Section>
         <SectionHeading eyebrow="FAQ" title="Questions patients ask us most" />
-        <div className="mx-auto mt-10 max-w-3xl space-y-3">
+        <div className="mt-10 grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+          <RevealImage
+            src={sectionImages.faq}
+            alt={sectionAlt.faq}
+            className="aspect-4/3 w-full lg:sticky lg:top-28"
+          />
+          <div className="space-y-3">
           {faqs.slice(0, 6).map((f) => (
             <details
               key={f.q}
@@ -473,6 +521,7 @@ function FaqPreview() {
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{f.a}</p>
             </details>
           ))}
+          </div>
         </div>
         <div className="mt-8 text-center">
           <Link to="/faq" className="text-sm font-semibold text-primary hover:underline">
@@ -488,6 +537,11 @@ function LatestArticles() {
   return (
     <Section>
       <SectionHeading eyebrow="Health Library" title="Latest articles from the centre" />
+      <RevealImage
+        src={sectionImages.articles}
+        alt={sectionAlt.articles}
+        className="mt-10 aspect-21/9 w-full"
+      />
       <div className="mt-12 grid gap-5 md:grid-cols-3">
         {articles.slice(0, 3).map((a) => (
           <Link
@@ -515,6 +569,12 @@ function FinalCta() {
   return (
     <Section>
       <div className="relative overflow-hidden rounded-[2.5rem] gradient-royal p-10 text-center text-primary-foreground shadow-lift sm:p-16">
+        <img
+          src={sectionImages.cta}
+          alt={sectionAlt.cta}
+          loading="lazy"
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-30 mix-blend-luminosity animate-float"
+        />
         <div className="absolute -top-20 -right-10 h-64 w-64 rounded-full bg-primary-foreground/10 blur-3xl" />
         <h2 className="relative text-3xl font-semibold text-balance sm:text-4xl">
           Take control of your diabetes and hormone health

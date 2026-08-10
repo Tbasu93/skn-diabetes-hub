@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import { RevealImage } from "@/components/site/RevealImage";
 
 export function Reveal({
   children,
@@ -95,14 +96,23 @@ export function PageHero({
   eyebrow,
   title,
   subtitle,
+  image,
+  imageAlt,
 }: {
   eyebrow: string;
   title: string;
   subtitle: string;
+  image?: string;
+  imageAlt?: string;
 }) {
   return (
     <div className="gradient-soft border-b border-border">
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20">
+      <div
+        className={`mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 sm:px-6 sm:py-20 ${
+          image ? "lg:grid-cols-[1.05fr_0.95fr]" : ""
+        }`}
+      >
+        <div className="animate-rise">
         <span className="inline-block rounded-full bg-card px-3 py-1 text-xs font-semibold tracking-widest text-primary uppercase shadow-soft">
           {eyebrow}
         </span>
@@ -111,6 +121,15 @@ export function PageHero({
       </h1>
       <span className="mt-6 block h-1 w-24 rounded-full gradient-royal" />
       <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">{subtitle}</p>
+        </div>
+        {image && (
+          <RevealImage
+            src={image}
+            alt={imageAlt ?? title}
+            eager
+            className="aspect-16/10 w-full"
+          />
+        )}
       </div>
     </div>
   );
