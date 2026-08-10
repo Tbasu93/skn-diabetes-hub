@@ -323,6 +323,14 @@ function ServicesPreview() {
                 className="group shadow-soft hover:shadow-lift relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-border bg-card p-6 transition-all duration-500 hover:-translate-y-1.5 hover:border-primary/40"
               >
                 <span className="pointer-events-none absolute -top-16 -right-12 h-44 w-44 rounded-full bg-accent/20 opacity-0 blur-3xl transition-opacity duration-700 group-hover:opacity-100" />
+                <span className="relative -mx-6 -mt-6 mb-5 block overflow-hidden">
+                  <img
+                    src={homePillarImage[p.id]}
+                    alt={p.title}
+                    loading="lazy"
+                    className="h-40 w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                </span>
                 <span className="bg-secondary text-primary relative grid h-14 w-14 place-items-center rounded-2xl transition-transform duration-500 group-hover:scale-110">
                   <Icon className="h-6 w-6" />
                 </span>
