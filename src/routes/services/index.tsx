@@ -314,6 +314,11 @@ function AssessmentsDetail() {
   return (
     <div className="mt-10">
       <h3 className="text-2xl font-bold sm:text-3xl">The eleven complimentary assessments</h3>
+      <RevealImage
+        src={sectionImages.assessments}
+        alt={sectionAlt.assessments}
+        className="mt-6 aspect-21/9 w-full"
+      />
       <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {complimentaryTests.map((t, i) => (
           <Reveal key={t.name} delay={i * 50}>
@@ -371,21 +376,31 @@ function CampsDetail() {
     {
       title: "Quarterly corporate health camps",
       desc: "Partner companies organise camps at the chamber every quarter. Attendees are examined absolutely free of cost, with screening, counselling and onward referral in one visit.",
+      img: sectionImages.camps,
     },
     {
       title: "World Diabetes Day units",
       desc: "Special health units run on World Diabetes Day spreading awareness and consciousness, with free tests conducted for anyone who comes and visits the clinic.",
+      img: sectionImages.patients,
     },
   ];
   return (
     <div className="mt-10 grid gap-5 lg:grid-cols-2">
       {items.map((it, i) => (
         <Reveal key={it.title} delay={i * 120}>
-          <div className="bg-card shadow-soft hover:shadow-lift relative h-full overflow-hidden rounded-[2rem] border border-border p-8 transition-all hover:-translate-y-1">
+          <div className="group bg-card shadow-soft hover:shadow-lift relative h-full overflow-hidden rounded-[2rem] border border-border transition-all hover:-translate-y-1">
+            <img
+              src={it.img}
+              alt={it.title}
+              loading="lazy"
+              className="h-52 w-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            <div className="relative p-8">
             <span className="pointer-events-none absolute -top-20 -right-16 h-56 w-56 rounded-full bg-accent/15 blur-3xl" />
             <CalendarHeart className="relative h-8 w-8 text-primary" />
             <h4 className="relative mt-4 text-xl font-bold">{it.title}</h4>
             <p className="relative mt-3 leading-relaxed text-muted-foreground">{it.desc}</p>
+            </div>
           </div>
         </Reveal>
       ))}
