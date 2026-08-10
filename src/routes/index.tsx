@@ -370,6 +370,11 @@ function Tests() {
           title="Eleven health assessments, free of cost"
           subtitle={testsNote}
         />
+        <RevealImage
+          src={sectionImages.assessments}
+          alt={sectionAlt.assessments}
+          className="mt-10 aspect-21/9 w-full"
+        />
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {complimentaryTests.map((t) => (
             <div
@@ -396,6 +401,11 @@ function Journey() {
         eyebrow="Patient Journey"
         title="What happens from your first call"
         subtitle={timingNote}
+      />
+      <RevealImage
+        src={sectionImages.journey}
+        alt={sectionAlt.journey}
+        className="mt-10 aspect-21/9 w-full"
       />
       <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {patientJourney.map((p, i) => (
