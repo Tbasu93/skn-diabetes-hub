@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import { RevealImage } from "@/components/site/RevealImage";
 
 export function Reveal({
   children,
