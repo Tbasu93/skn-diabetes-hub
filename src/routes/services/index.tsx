@@ -116,6 +116,16 @@ function ServicesIndex() {
                       isActive ? "bg-primary-foreground/25 opacity-100" : "bg-accent/20 opacity-0 group-hover:opacity-100"
                     }`}
                   />
+                  <span className="relative -mx-6 -mt-6 mb-5 block overflow-hidden">
+                    <img
+                      src={pillarImage[pillar.id]}
+                      alt={pillar.title}
+                      loading="lazy"
+                      className={`h-36 w-full object-cover transition-transform duration-700 group-hover:scale-110 ${
+                        isActive ? "scale-105" : ""
+                      }`}
+                    />
+                  </span>
                   <span
                     className={`relative grid h-14 w-14 place-items-center rounded-2xl transition-transform duration-500 ${
                       isActive
@@ -162,6 +172,12 @@ function ServicesIndex() {
               <p className="mt-4 max-w-3xl text-lg leading-relaxed text-muted-foreground">
                 {activePillar.intro}
               </p>
+              <RevealImage
+                key={activePillar.id}
+                src={pillarImage[activePillar.id]}
+                alt={activePillar.title}
+                className="mt-8 aspect-21/9 w-full"
+              />
               <div className="mt-8 grid gap-3 sm:grid-cols-2">
                 {activePillar.highlights.map((h, i) => (
                   <Reveal key={h} delay={i * 70}>
@@ -211,6 +227,11 @@ function TreatmentDetail() {
         Twenty specialist services grouped by system. Every service has its own page covering
         symptoms, causes, diagnosis, treatment and FAQs.
       </p>
+      <RevealImage
+        src={sectionImages.treatment}
+        alt={sectionAlt.treatment}
+        className="mt-6 aspect-21/9 w-full"
+      />
       <div className="mt-6 space-y-5">
         {serviceGroups.map((group) => {
           const Icon = groupIcon(group);
@@ -323,6 +344,11 @@ function NutritionDetail() {
   return (
     <div className="mt-10">
       <h3 className="text-2xl font-bold sm:text-3xl">How counselling works</h3>
+      <RevealImage
+        src={sectionImages.nutrition}
+        alt={sectionAlt.nutrition}
+        className="mt-6 aspect-21/9 w-full"
+      />
       <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {steps.map((s, i) => (
           <Reveal key={s.title} delay={i * 90}>
