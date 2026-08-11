@@ -24,7 +24,7 @@ export function CredentialHighlight() {
                 Fellow of the American Association of Clinical Endocrinology (FACE)
               </h3>
               <p className="mt-3 max-w-3xl text-base leading-relaxed opacity-95">
-                Dr. Supratik Bhattacharyya is recognized as a Fellow of the American Association of
+                Dr. Supratik Bhattacharya is recognized as a Fellow of the American Association of
                 Clinical Endocrinology, reflecting professional achievement in clinical endocrinology.
               </p>
               <a
