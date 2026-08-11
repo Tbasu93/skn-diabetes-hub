@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { Reveal, Section, SectionHeading } from "@/components/site/Section";
 import { RevealImage } from "@/components/site/RevealImage";
+import { CredentialHighlight } from "@/components/site/CredentialHighlight";
 import { sectionAlt, sectionImages } from "@/data/sectionImages";
 import { CountUp } from "@/components/site/CountUp";
 import {
@@ -81,6 +82,7 @@ function Index() {
       <Hero />
       <QuickFacts />
       <DoctorStrip />
+      <CredentialHighlight />
       <WhyUs />
       <MissionVision />
       <ServicesPreview />
