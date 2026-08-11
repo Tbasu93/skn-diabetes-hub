@@ -14,6 +14,7 @@ import {
   Users,
 } from "lucide-react";
 import { PageHero, Reveal, Section, SectionHeading } from "@/components/site/Section";
+import { CredentialHighlight } from "@/components/site/CredentialHighlight";
 import {
   clinic,
   coreValues,
@@ -134,6 +135,8 @@ function About() {
           </div>
         </div>
       </Section>
+
+      <CredentialHighlight />
 
       <Section>
         <div className="relative overflow-hidden rounded-[2.5rem] gradient-royal p-8 text-primary-foreground shadow-lift sm:p-12">
