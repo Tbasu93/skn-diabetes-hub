@@ -222,3 +222,41 @@
 @utility animate-float {
   animation: float-slow 7s ease-in-out infinite;
 }
+
+/* ---- Hero backdrop motion ---- */
+@keyframes hero-pan {
+  0% { transform: scale(1.06) translate3d(0, 0, 0); }
+  50% { transform: scale(1.12) translate3d(-1.5%, -1%, 0); }
+  100% { transform: scale(1.06) translate3d(0, 0, 0); }
+}
+
+@keyframes hero-drift {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(2.5%, -3%, 0); }
+}
+
+@keyframes hero-shimmer {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 0.7; }
+}
+
+@utility animate-hero-pan {
+  animation: hero-pan 34s ease-in-out infinite;
+}
+
+@utility animate-hero-drift {
+  animation: hero-drift 22s ease-in-out infinite;
+}
+
+@utility animate-hero-shimmer {
+  animation: hero-shimmer 9s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-hero-pan,
+  .animate-hero-drift,
+  .animate-hero-shimmer,
+  .animate-float {
+    animation: none !important;
+  }
+}
