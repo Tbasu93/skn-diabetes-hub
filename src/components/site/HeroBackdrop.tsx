@@ -9,7 +9,7 @@ export function HeroBackdrop({
   align = "right",
 }: {
   image: string;
-  alt?: string;
+  alt?: string | undefined;
   align?: "right" | "center";
 }) {
   return (

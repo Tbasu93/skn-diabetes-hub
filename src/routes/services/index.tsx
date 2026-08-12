@@ -89,6 +89,8 @@ function ServicesIndex() {
         subtitle="Specialist treatment, complimentary health assessments, expert nutrition counselling and free community health camps — select any pillar to explore it in detail."
         image={sectionImages.whyUs}
         imageAlt={sectionAlt.whyUs}
+        backdrop={heroImages.services}
+        backdropAlt={heroAlt.services}
       />
 
       <Section>

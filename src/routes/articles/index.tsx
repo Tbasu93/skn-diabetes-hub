@@ -42,6 +42,8 @@ function ArticlesIndex() {
         subtitle="Clear, evidence-based writing on diabetes, thyroid, hormones and metabolic health."
         image={sectionImages.articles}
         imageAlt={sectionAlt.articles}
+        backdrop={heroImages.articles}
+        backdropAlt={heroAlt.articles}
       />
 
       <Section>

@@ -46,6 +46,8 @@ function Gallery() {
         eyebrow="Gallery"
         title="Inside the centre"
         subtitle="Our chamber, our consultant, and the camps and awareness programmes we run for the community."
+        backdrop={heroImages.gallery}
+        backdropAlt={heroAlt.gallery}
       />
       <Section>
         <div className="flex flex-wrap gap-2">
