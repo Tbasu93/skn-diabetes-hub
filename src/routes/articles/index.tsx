@@ -1,3 +1,4 @@
+import { heroAlt, heroImages } from "@/data/heroImages";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { PageHero, Section } from "@/components/site/Section";
@@ -42,6 +43,8 @@ function ArticlesIndex() {
         subtitle="Clear, evidence-based writing on diabetes, thyroid, hormones and metabolic health."
         image={sectionImages.articles}
         imageAlt={sectionAlt.articles}
+        backdrop={heroImages.articles}
+        backdropAlt={heroAlt.articles}
       />
 
       <Section>

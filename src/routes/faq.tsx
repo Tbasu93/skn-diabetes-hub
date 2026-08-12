@@ -1,3 +1,4 @@
+import { heroAlt, heroImages } from "@/data/heroImages";
 import { createFileRoute } from "@tanstack/react-router";
 import { Phone } from "lucide-react";
 import { PageHero, Section } from "@/components/site/Section";
@@ -33,6 +34,8 @@ function Faq() {
         subtitle="Booking, fees, timings and treatment — answered clearly before your first visit."
         image={sectionImages.faq}
         imageAlt={sectionAlt.faq}
+        backdrop={heroImages.faq}
+        backdropAlt={heroAlt.faq}
       />
       <Section>
         <div className="grid gap-4 sm:grid-cols-2">

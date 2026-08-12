@@ -1,3 +1,4 @@
+import { heroAlt, heroImages } from "@/data/heroImages";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,
@@ -59,6 +60,8 @@ function About() {
         eyebrow="About"
         title="Global endocrine standards, delivered in Naihati"
         subtitle={`${clinic.name} was founded to give patients in and around Naihati access to specialist diabetes and hormone care that meets international benchmarks.`}
+        backdrop={heroImages.about}
+        backdropAlt={heroAlt.about}
       />
 
       <Section>

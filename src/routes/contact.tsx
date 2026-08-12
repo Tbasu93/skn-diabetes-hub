@@ -1,3 +1,4 @@
+import { heroAlt, heroImages } from "@/data/heroImages";
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { AlertTriangle, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
@@ -37,6 +38,8 @@ function Contact() {
         subtitle="Appointments are confirmed only over phone or in person. Send us a message and we will call you back."
         image={sectionImages.contact}
         imageAlt={sectionAlt.contact}
+        backdrop={heroImages.contact}
+        backdropAlt={heroAlt.contact}
       />
 
       <Section>
