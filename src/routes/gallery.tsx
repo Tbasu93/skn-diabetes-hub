@@ -1,3 +1,4 @@
+import { heroAlt, heroImages } from "@/data/heroImages";
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { X } from "lucide-react";

@@ -1,3 +1,4 @@
+import { heroAlt, heroImages } from "@/data/heroImages";
 import { createFileRoute } from "@tanstack/react-router";
 import { Phone } from "lucide-react";
 import { PageHero, Section } from "@/components/site/Section";
