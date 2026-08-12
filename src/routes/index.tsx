@@ -41,6 +41,8 @@ import {
 } from "@/data/clinic";
 import { pillars } from "@/data/pillars";
 import { articles } from "@/data/articles";
+import { heroAlt, heroImages } from "@/data/heroImages";
+import { HeroBackdrop } from "@/components/site/HeroBackdrop";
 
 const homePillarIcon = {
   treatment: Stethoscope,
@@ -99,9 +101,8 @@ function Index() {
 
 function Hero() {
   return (
-    <div className="relative overflow-hidden gradient-soft">
-      <div className="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-accent/20 blur-3xl" />
-      <div className="absolute -bottom-32 -left-24 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
+    <div className="relative isolate overflow-hidden gradient-soft">
+      <HeroBackdrop image={heroImages.home} alt={heroAlt.home} />
       <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:py-24">
         <div className="animate-rise">
           <span className="inline-flex items-center gap-2 rounded-full bg-card px-4 py-1.5 text-xs font-semibold tracking-widest text-primary uppercase shadow-soft">
