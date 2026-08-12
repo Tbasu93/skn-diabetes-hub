@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { RevealImage } from "@/components/site/RevealImage";
+import { HeroBackdrop } from "@/components/site/HeroBackdrop";
 
 export function Reveal({
   children,
@@ -98,17 +99,22 @@ export function PageHero({
   subtitle,
   image,
   imageAlt,
+  backdrop,
+  backdropAlt,
 }: {
   eyebrow: string;
   title: string;
   subtitle: string;
   image?: string;
   imageAlt?: string;
+  backdrop?: string;
+  backdropAlt?: string;
 }) {
   return (
-    <div className="gradient-soft border-b border-border">
+    <div className="gradient-soft relative isolate overflow-hidden border-b border-border">
+      {backdrop && <HeroBackdrop image={backdrop} alt={backdropAlt} />}
       <div
-        className={`mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 sm:px-6 sm:py-20 ${
+        className={`relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 sm:px-6 sm:py-20 ${
           image ? "lg:grid-cols-[1.05fr_0.95fr]" : ""
         }`}
       >
